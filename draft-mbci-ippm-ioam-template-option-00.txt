@@ -10,6 +10,10 @@ Expires: 3 January 2026                                            Cisco
                                                                Sympotech
                                                                J. Iurman
                                                      University of Liege
+                                                             S. Bhandari
+                                                              Databricks
+                                                                 T. Zhou
+                                                                  Huawei
                                                              2 July 2025
 
 
@@ -43,10 +47,6 @@ Status of This Memo
 
    This Internet-Draft will expire on 3 January 2026.
 
-Copyright Notice
-
-   Copyright (c) 2025 IETF Trust and the persons identified as the
-   document authors.  All rights reserved.
 
 
 
@@ -57,6 +57,11 @@ Mizrahi, et al.          Expires 3 January 2026                 [Page 1]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents (https://trustee.ietf.org/
@@ -76,13 +81,13 @@ Table of Contents
    3.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Requirements for the IOAM Template Option-Type  . . . . . . .   4
    5.  In situ Template Option-Type  . . . . . . . . . . . . . . . .   4
-   6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
      6.1.  IOAM Data Aggregation Along The Path  . . . . . . . . . .   6
-     6.2.  Transit Measurement Template  . . . . . . . . . . . . . .   7
+     6.2.  Transit Measurement Template  . . . . . . . . . . . . . .   6
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
      9.2.  Informative References  . . . . . . . . . . . . . . . . .   8
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
@@ -99,11 +104,6 @@ Table of Contents
    path.  Compared to existing IOAM Trace Option-Types, the new Option-
    Type provides coarse-grained performance information using data
    fields that have a constant length.
-
-
-
-
-
 
 
 
@@ -233,8 +233,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |                                                               |
       ~       Template-Data depending on the Template-ID value        ~
-      |                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                               |Nxt-Template-ID|  Next-Length  |
+      |                                                               |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
@@ -259,10 +258,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
    Template-Data:  The data that follows the Template-ID has a constant
       length.  The semantics and length of the data are determined by
       the Template-ID.  The option data might consist of more than one
-      sub-field.  The last two octets of the Template-Data the Nxt-
-      Template-ID and Next-Length, pertaining to the next Template-Data,
-      if any.  The value 0 in the Nxt-Template-ID indicates that this is
-      the last Template-Data.
+      sub-field.
 
    The specification of the Template-ID values and the corresponding
    option data formats is outside the scope of this document.
@@ -271,6 +267,10 @@ Internet-Draft              Fixed IOAM Option                  July 2025
    all or a subset of the traffic that is forwarded by the encapsulating
    node.  Notably, this option adds a fixed and low overhead to data
    packets, which remains constant along the path.
+
+6.  Examples
+
+   The section lists examples of how the template option can be used.
 
 
 
@@ -281,10 +281,6 @@ Mizrahi, et al.          Expires 3 January 2026                 [Page 5]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
-
-6.  Examples
-
-   The section lists examples of how the template option can be used.
 
 6.1.  IOAM Data Aggregation Along The Path
 
@@ -300,13 +296,11 @@ Internet-Draft              Fixed IOAM Option                  July 2025
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |        Namespace-ID           |  TBD_1        |   Length=3    |
+      |        Namespace-ID           |  TBD_1        |   Length=2    |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |               IOAM Data Param                 |  Aggregator   |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |                           Aggregate                           |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Padding              |Nxt-Template-ID|  Next-Length  |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
@@ -328,6 +322,12 @@ Internet-Draft              Fixed IOAM Option                  July 2025
       requested aggregation, including IOAM transit nodes as well as the
       IOAM decapsulating node (prior to performing decapsulation).
 
+6.2.  Transit Measurement Template
+
+   The use case that is presented in
+   [I-D.mzbc-ippm-transit-measurement-option] provides aggregated
+   transit delay information, as well as congestion status of transit
+   nodes, as shown in the following template:
 
 
 
@@ -338,24 +338,14 @@ Mizrahi, et al.          Expires 3 January 2026                 [Page 6]
 Internet-Draft              Fixed IOAM Option                  July 2025
 
 
-6.2.  Transit Measurement Template
-
-   The use case that is presented in
-   [I-D.mzbc-ippm-transit-measurement-option] provides aggregated
-   transit delay information, as well as congestion status of transit
-   nodes, as shown in the following template:
-
-
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |        Namespace-ID           |  TBD_2        |   Length=3    |
+      |        Namespace-ID           |  TBD_2        |   Length=2    |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |                       Accumulated Delay                       |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |   Hop Count   |            Status Bitmap                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          Padding              |Nxt-Template-ID|  Next-Length  |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
@@ -380,19 +370,11 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 8.  Security Considerations
 
    The security considerations of IOAM in general are discussed in
-   [RFC9197].  The Fixed-Length Option-Type may be used for
-   reconnaissance, which in turn can facilitate other types of attacks.
-   As in other types of IOAM data fields, a malicious attacker can
-   manipulate the field values in order to create a false illusion of
-   nonexistent network issues or prevent the detection of actual ones.
-
-
-
-
-Mizrahi, et al.          Expires 3 January 2026                 [Page 7]
-
-Internet-Draft              Fixed IOAM Option                  July 2025
-
+   [RFC9197].  The Template Option-Type may be used for reconnaissance,
+   which in turn can facilitate other types of attacks.  As in other
+   types of IOAM data fields, a malicious attacker can manipulate the
+   field values in order to create a false illusion of nonexistent
+   network issues or prevent the detection of actual ones.
 
 9.  References
 
@@ -402,6 +384,15 @@ Internet-Draft              Fixed IOAM Option                  July 2025
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+
+
+
+
+Mizrahi, et al.          Expires 3 January 2026                 [Page 7]
+
+Internet-Draft              Fixed IOAM Option                  July 2025
+
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -438,18 +429,6 @@ Internet-Draft              Fixed IOAM Option                  July 2025
               January 2025, <https://datatracker.ietf.org/doc/html/
               draft-mzbc-ippm-transit-measurement-option-05>.
 
-
-
-
-
-
-
-
-Mizrahi, et al.          Expires 3 January 2026                 [Page 8]
-
-Internet-Draft              Fixed IOAM Option                  July 2025
-
-
    [I-D.ravi-ippm-csig]
               Ravi, A., Dukkipati, N., Mehta, N., and J. Kumar,
               "Congestion Signaling (CSIG)", Work in Progress, Internet-
@@ -463,6 +442,13 @@ Internet-Draft              Fixed IOAM Option                  July 2025
               Internet-Draft, draft-xiao-ippm-ioam-trace-extensions-01,
               18 April 2025, <https://datatracker.ietf.org/doc/html/
               draft-xiao-ippm-ioam-trace-extensions-01>.
+
+
+
+Mizrahi, et al.          Expires 3 January 2026                 [Page 8]
+
+Internet-Draft              Fixed IOAM Option                  July 2025
+
 
 Authors' Addresses
 
@@ -495,7 +481,21 @@ Authors' Addresses
    Email: justin.iurman@uliege.be
 
 
+   Shwetha Bhandari
+   Databricks
+   Angkor West Building Bagmane Capital Tech Park Ferns City Doddanekkundi
+   Mahadevpura Bengaluru, Karnataka 560048
+   India
+   Email: shwetha.bhandari@databricks.com
 
+
+   Tianran Zhou
+   Huawei
+   156 Beiqing Rd.
+   Beijing
+   100095
+   China
+   Email: zhoutianran@huawei.com
 
 
 
