@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes" ?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+<rfc category="std" docName="draft-mbci-ippm-ioam-template-option-00"
+     ipr="trust200902">
+  <front>
+    <title abbrev="Fixed IOAM Option">In Situ Operations, Administration, and Maintenance (IOAM) Template Option</title>
+
+    <author fullname="Tal Mizrahi" initials="T." surname="Mizrahi">
+      <organization abbrev="">Huawei</organization>
+
+      <address>
+        <postal>
+          <street>Matam</street>
+
+          <city>Haifa</city>
+
+          <code>3190501</code>
+
+          <country>Israel</country>
+        </postal>
+
+        <email>tal.mizrahi.phd@gmail.com</email>
+      </address>
+    </author>
+
+    <author fullname="Frank Brockners" initials="F." surname="Brockners">
+      <organization abbrev="Cisco">Cisco Systems, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>Hansaallee 249, 3rd Floor</street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>DUESSELDORF</city>
+
+          <code>40549</code>
+
+          <country>Germany</country>
+        </postal>
+
+        <email>fbrockne@cisco.com</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+
+    <author initials="A." surname="Clemm" fullname="Alexander Clemm">
+      <organization>Sympotech</organization>
+      <address>
+        <email>ludwig@clemm.org</email>
+      </address>
+    </author>
+
+    <author fullname="Justin Iurman" initials="J." surname="Iurman">
+      <organization abbrev="">University of Liege</organization>
+
+      <address>
+        <postal>
+          <street>10, Allee de la decouverte (B28)</street>
+
+          <code>4000</code>
+
+          <city>Sart-Tilman</city>
+
+          <country>Belgium</country>
+        </postal>
+
+        <email>justin.iurman@uliege.be</email>
+      </address>
+    </author>
+
+    <date year="2025"/>
+
+    <area>OPS</area>
+
+    <workgroup>IPPM</workgroup>
+
+    <keyword>IOAM</keyword>
+
+    <abstract>
+      <t>In situ measurement is performed by incorporating performance related 
+	  information into in-flight data packets. This document specifies a 
+	  new IOAM Option-Type that has a fixed length and can be updated by
+	  transit nodes along the path. It enables lightweight monitoring using constant-length 
+	  data that does not depend on the number of hops in the network.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+	  <t>In Situ Operations, Administration, and Maintenance (IOAM) 
+	  <xref target="RFC9197"/> is used for measuring and monitoring a network
+	  by incorporating measurement and operational data into some or all of
+	  the data packets. <xref target="RFC9197"/> has defined several
+	  Option-Types, intended for different purposes.</t>
+
+	  <t>This document introduces a new IOAM Option-Type that can be 
+	  incorporated into data packets and updated by transit
+	  nodes along the path. Compared to existing IOAM Trace Option-Types, the 
+	  new Option-Type provides coarse-grained performance information using 
+	  data fields that have a constant length.</t>
+	  
+	  <t>There are several in-progress proposals that use a fixed-size
+	  telemetry header, including <xref target="I-D.cxx-ippm-ioamaggr"/>, 
+	  <xref target="I-D.mzbc-ippm-transit-measurement-option"/>,
+	  <xref target="I-D.xiao-ippm-ioam-trace-extensions"/>,
+	  <xref target="I-D.filsfils-ippm-path-tracing"/>
+	  and <xref target="I-D.ravi-ippm-csig"/>.
+	  These proposals can potentially benefit from the IOAM Option-Type that is
+	  presented in this document.</t>
+	  
+
+    </section>
+
+    <section anchor="Conventions" title="Conventions">
+      <section title="Requirement Language">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+        "OPTIONAL" in this document are to be interpreted as described in BCP
+        14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only
+        when, they appear in all capitals, as shown here.</t>
+      </section>
+
+      <section title="Terminology">
+	  
+        <t>Abbreviations used in this document:</t>
+
+        <t><list hangIndent="11" style="hanging">
+            <t hangText="IOAM:">In-situ Operations, Administration, and
+            Maintenance</t>
+
+            <t hangText="OAM:">Operations, Administration, and Maintenance</t>
+
+          </list></t>
+
+	    <t>The terms Option-Type, encapsulating 
+		node, decapsulating node, and transit node are defined in 
+		<xref target="RFC9197"/>.</t>
+
+      </section>
+    </section>
+
+    <section anchor="useSec" title="Use Cases">
+      <t>There is a set of use cases that the current IOAM Option-Types do not 
+      support. This section lists a set of use cases for the IOAM Template 
+      Option-Type.</t>
+
+        <t><list style="symbols">
+          <t>Aggregated information: aggregated information across several 
+          nodes, e.g., <xref target="I-D.cxx-ippm-ioamaggr"/>. Many 
+          applications interested in telemetry data across a path are not
+          focused on individual node's telemetry, but on an aggregated metric
+          that can provide a more holistic picture. Aggregating IOAM data 
+          along a network path meets this requirement. IOAM nodes do not only 
+          retrieve information, but also perform functions such as sum, 
+          average, minimum, or maximum of a given data parameter and carry the 
+          result to the next IOAM node in an IOAM data field.</t>
+
+          <t>Congestion information: information relating to the congestion
+          status can be collected from nodes along the path, e.g., 
+          <xref target="I-D.ravi-ippm-csig"/> providing a finer level of
+          granularity than conventional ECN while limiting the congestion
+          status to a fixed size.</t>
+
+          <t>Combined information: a combination of aggregated information
+          and congestion-related information can be collected along the path,
+          e.g., <xref target="I-D.mzbc-ippm-transit-measurement-option"/>,
+          while using a fixed size.</t>
+        </list></t>
+    </section>
+
+    <section anchor="reqSec" title="Requirements for the IOAM Template Option-Type">
+      <t>This section lists requirements for the IOAM Template Option-Type:</t>
+
+        <t><list style="symbols">
+          <t>Templates supported MUST have a fixed length and fixed structure. 
+          Fixed length and structure are to simplify parsing of the 
+          Option-Type.</t>
+
+          <t>Each templates is a composition of one or more data fields.</t>
+
+          <t>Data fields within a template can have different sizes (e.g., 8 
+          bits, 16 bits, 32 bits).</t>
+
+          <t>Templates MUST align to 4 octet boundaries. If necessary, 
+          padding fields are used to guarantee 4-octet alignment.</t>
+
+          <t>Data fields within a Template can be read-only for IOAM nodes or 
+          read-write for IOAM nodes, depending on their use.</t>
+
+          <t>The IOAM Template Option-Type SHOULD support IETF defined (IANA 
+          registry) Templates for use-cases which are defined by the IETF as 
+          well as custom/deployment specific templates, that are defined by 
+          the operator and are specific to a deployment.</t>
+        </list></t>
+    </section>
+
+    <section anchor="option" title="In situ Template Option-Type">
+      <t>This document defines a new IOAM Option-Type, the
+	  Template Option-Type. The length of the Template 
+	  Option-Type MUST NOT be modified by IOAM transit nodes.
+	  However, IOAM transit nodes MAY modify the option data
+	  in the Template Option-Type.
+	  <xref target="FixedFormat"/> presents the
+	  format of this Option-Type.</t>
+
+          <figure align="center" anchor="FixedFormat"
+                  title="Template Option-Type">
+            <artwork align="left"><![CDATA[
+         
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |        Namespace-ID           |  Template-ID  |    Length     |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   ~       Template-Data depending on the Template-ID value        ~
+   |                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                               |Nxt-Template-ID|  Next-Length  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   
+           ]]></artwork>
+          </figure>
+
+      <t>
+	     An IOAM node that complies to this draft MUST support the following
+		 fields, as depicted in <xref target="FixedFormat"/>:
+		 
+	<list style="hanging">
+	<t hangText="Namespace-ID:">A 16-bit namespace identifier, as 
+		   defined in <xref target="RFC9197"/>.</t>
+
+        <t hangText="Template-ID:">An 8-bit identifier that specifies 
+		 the template that follows. A new 
+		 registry is defined for this field, as specified in 
+		 <xref target="IANA"/>. The value 0 has been assigned, 
+		 indicating "No Option Data". 
+		 Assignments of values 1 to 127 are controlled by IANA.
+		 Values 128 to 255 are can be defined by an operator for a 
+		 specific deployment.</t>
+
+	 <t hangText="Length:">An 8-bit length that specifies the size of 
+		 the Template-Data in multiples of 4 octets.</t>
+
+	 <t hangText="Template-Data:">The data that follows the 
+		 Template-ID has a constant length. The semantics and length 
+		 of the data are determined by the Template-ID. The option 
+		 data might consist of more than one sub-field. The last 
+		 two octets of the Template-Data the Nxt-Template-ID and 
+                 Next-Length, pertaining to the next Template-Data, if any. 
+                 The value 0 in the Nxt-Template-ID indicates that this is
+                 the last Template-Data.</t>
+          </list></t>
+
+	  <t>The specification of the Template-ID values and the
+	  corresponding option data formats is outside the scope of this
+	  document.</t>
+	    
+	  <t>As in <xref target="RFC9197"/>, the Template Option-Type can
+          be incorporated into all or a subset of the traffic that is forwarded
+          by the encapsulating node. Notably, this option adds a fixed and 
+	  low overhead to data packets, which remains constant along the path.</t>
+    </section>
+
+    <section anchor="exampleSec" title="Examples">
+        <t>The section lists examples of how the template option can be used.
+        </t>
+
+    <section title="IOAM Data Aggregation Along The Path">
+        <t><xref target="I-D.cxx-ippm-ioamaggr"/> describes use cases to 
+        aggregate IOAM data along a network path.  Rather than just 
+        collecting data at IOAM nodes, data is collected and processed by 
+        the IOAM nodes - using functions like sum, average, minimum, or 
+        maximum of a given data parameter - and the result stored in a 
+        data field called "Aggregate" (see below). The Template Option 
+        can be used to support this use-case with the following example 
+        template:</t>
+
+          <figure align="center" anchor="aggrFigure"
+                  title="Aggregation Template">
+            <artwork align="left"><![CDATA[
+         
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |        Namespace-ID           |  TBD_1        |   Length=3    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |               IOAM Data Param                 |  Aggregator   |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                           Aggregate                           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          Padding              |Nxt-Template-ID|  Next-Length  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   
+           ]]></artwork>
+          </figure>
+
+	<t><list style="hanging">
+	<t hangText="IOAM Data Param:">This field identifies the data parameter that is
+        to be aggregated across the nodes.  It MUST be set by the IOAM
+        encapsulating node.  IOAM transit nodes MUST NOT change it.</t>
+
+        <t hangText="Aggregator:">This 8-bit field identifies the aggregation function
+        that is to be applied.  Its value MUST be set by the IOAM
+        encapsulating node.  IOAM transit nodes MUST not change it.  The
+        following aggregators are defined: Sum, Min, Max, Average.</t>
+
+	 <t hangText="Aggregate:">This 32-bit field contains the aggregated value.  Its
+        value is initialized by the encapsulating node,in general by
+        simply recording the value of its data parameter that is to be
+        aggregated.  The field is updated by each subsequent node pre the
+        requested aggregation, including IOAM transit nodes as well as the
+        IOAM decapsulating node (prior to performing decapsulation).</t>
+
+          </list></t>
+    </section>
+
+    <section title="Transit Measurement Template">
+        <t>The use case that is presented in
+        <xref target="I-D.mzbc-ippm-transit-measurement-option"/> provides 
+        aggregated transit delay information, as well as congestion status 
+        of transit nodes, as shown in the following template:</t> 
+
+          <figure align="center" anchor="transitFigure"
+                  title="Transit Measurement Template">
+            <artwork align="left"><![CDATA[
+         
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |        Namespace-ID           |  TBD_2        |   Length=3    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                       Accumulated Delay                       |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |   Hop Count   |            Status Bitmap                      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          Padding              |Nxt-Template-ID|  Next-Length  |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   
+           ]]></artwork>
+          </figure>
+
+	<t><list style="hanging">
+	<t hangText="Accumulated Delay:">represents the sum of the transit delay values in
+        nanoseconds along the path of the packet, including the current
+        node.</t>
+
+        <t hangText="Hop Count/Status Bitmap:">indicates the devices along the path that
+        have experienced congestion. Hop Count is a one-octet field that indicates the number of hops
+        since the encapsulating node, and is updated by each transit node. Status Bitmap 
+        is a three octet field that represents the congestion
+        status of each transit node along the path.  The value '1'
+        indicates that the current packet was enqueued in a queue that
+        is congested.</t>
+        </list></t>
+    </section>
+
+
+    </section>
+
+    <section anchor="IANA" title="IANA Considerations">
+        <t>To be added to a future version of this document.</t>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>The security considerations of IOAM in general are discussed in 
+	  <xref target="RFC9197"/>. The Fixed-Length Option-Type may be used for reconnaissance, which
+	  in turn can facilitate other types of attacks. As in other types of IOAM
+	  data fields, a malicious attacker can manipulate the field 
+	  values in order to create a false illusion of nonexistent network issues 
+	  or prevent the detection of actual ones.</t>
+    </section>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <?rfc include='reference.RFC.2119'?>
+
+      <?rfc include='reference.RFC.8174'?>
+
+      <?rfc include='reference.RFC.9197'?>
+    </references>
+
+    <references title="Informative References">
+      <?rfc include='reference.I-D.cxx-ippm-ioamaggr'?>
+	  
+      <?rfc include='reference.I-D.mzbc-ippm-transit-measurement-option'?>
+
+      <?rfc include='reference.I-D.xiao-ippm-ioam-trace-extensions'?>
+
+      <?rfc include='reference.I-D.filsfils-ippm-path-tracing'?>
+
+      <?rfc include='reference.I-D.ravi-ippm-csig'?>
+    </references>
+
+  </back>
+</rfc>
