@@ -78,6 +78,40 @@
       </address>
     </author>
 
+    <author fullname="Shwetha Bhandari" initials="S." surname="Bhandari">
+      <organization abbrev="">Databricks</organization>
+
+      <address>
+        <postal>
+          <street>Angkor West Building Bagmane Capital Tech Park Ferns City Doddanekkundi</street>
+
+          <city>Mahadevpura Bengaluru, Karnataka 560048</city>
+
+          <country>India</country>
+        </postal>
+
+        <email>shwetha.bhandari@databricks.com</email>
+      </address>
+    </author>
+
+    <author fullname="Tianran Zhou" initials="T." surname="Zhou">
+      <organization abbrev="">Huawei</organization>
+
+      <address>
+        <postal>
+          <street>156 Beiqing Rd.</street>
+
+          <city>Beijing</city>
+
+          <code>100095</code>
+
+          <country>China</country>
+        </postal>
+
+        <email>zhoutianran@huawei.com</email>
+      </address>
+    </author>
+	  
     <date year="2025"/>
 
     <area>OPS</area>
@@ -224,8 +258,7 @@
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                                                               |
    ~       Template-Data depending on the Template-ID value        ~
-   |                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                               |Nxt-Template-ID|  Next-Length  |
+   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    
            ]]></artwork>
@@ -254,11 +287,7 @@
 	 <t hangText="Template-Data:">The data that follows the 
 		 Template-ID has a constant length. The semantics and length 
 		 of the data are determined by the Template-ID. The option 
-		 data might consist of more than one sub-field. The last 
-		 two octets of the Template-Data the Nxt-Template-ID and 
-                 Next-Length, pertaining to the next Template-Data, if any. 
-                 The value 0 in the Nxt-Template-ID indicates that this is
-                 the last Template-Data.</t>
+		 data might consist of more than one sub-field.</t>
           </list></t>
 
 	  <t>The specification of the Template-ID values and the
@@ -292,13 +321,11 @@
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |        Namespace-ID           |  TBD_1        |   Length=3    |
+   |        Namespace-ID           |  TBD_1        |   Length=2    |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |               IOAM Data Param                 |  Aggregator   |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                           Aggregate                           |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          Padding              |Nxt-Template-ID|  Next-Length  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    
            ]]></artwork>
@@ -337,13 +364,11 @@
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |        Namespace-ID           |  TBD_2        |   Length=3    |
+   |        Namespace-ID           |  TBD_2        |   Length=2    |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                       Accumulated Delay                       |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |   Hop Count   |            Status Bitmap                      |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          Padding              |Nxt-Template-ID|  Next-Length  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    
            ]]></artwork>
@@ -373,7 +398,7 @@
 
     <section anchor="Security" title="Security Considerations">
       <t>The security considerations of IOAM in general are discussed in 
-	  <xref target="RFC9197"/>. The Fixed-Length Option-Type may be used for reconnaissance, which
+	  <xref target="RFC9197"/>. The Template Option-Type may be used for reconnaissance, which
 	  in turn can facilitate other types of attacks. As in other types of IOAM
 	  data fields, a malicious attacker can manipulate the field 
 	  values in order to create a false illusion of nonexistent network issues 
