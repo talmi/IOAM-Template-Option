@@ -125,7 +125,7 @@
 	  information into in-flight data packets. This document specifies a 
 	  new IOAM Option-Type that has a fixed length and can be updated by
 	  transit nodes along the path. It enables lightweight monitoring using constant-length 
-	  data that does not depend on the number of hops in the network.</t>
+	  data that is not changed in-flight and is not affected by the number of hops in the network.</t>
     </abstract>
   </front>
 
@@ -140,15 +140,16 @@
 	  <t>This document introduces a new IOAM Option-Type that can be 
 	  incorporated into data packets and updated by transit
 	  nodes along the path. Compared to existing IOAM Trace Option-Types, the 
-	  new Option-Type provides coarse-grained performance information using 
+	  new Option-Type provides performance information using 
 	  data fields that have a constant length.</t>
 	  
 	  <t>There are several in-progress proposals that use a fixed-size
 	  telemetry header, including <xref target="I-D.cxx-ippm-ioamaggr"/>, 
 	  <xref target="I-D.mzbc-ippm-transit-measurement-option"/>,
 	  <xref target="I-D.xiao-ippm-ioam-trace-extensions"/>,
-	  <xref target="I-D.filsfils-ippm-path-tracing"/>
-	  and <xref target="I-D.ravi-ippm-csig"/>.
+	  <xref target="I-D.filsfils-ippm-path-tracing"/>,
+	  <xref target="I-D.ravi-ippm-csig"/>, and
+	  <xref target="I-D.shi-ippm-congestion-measurement-data"/>.
 	  These proposals can potentially benefit from the IOAM Option-Type that is
 	  presented in this document.</t>
 	  
@@ -425,6 +426,8 @@
       <?rfc include='reference.I-D.filsfils-ippm-path-tracing'?>
 
       <?rfc include='reference.I-D.ravi-ippm-csig'?>
+
+      <?rfc include='reference.I-D.shi-ippm-congestion-measurement-data'?>
     </references>
 
   </back>
