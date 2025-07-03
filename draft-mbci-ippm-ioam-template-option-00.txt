@@ -5,7 +5,7 @@
 IPPM                                                          T. Mizrahi
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                            F. Brockners
-Expires: 3 January 2026                                            Cisco
+Expires: 4 January 2026                                            Cisco
                                                                 A. Clemm
                                                                Sympotech
                                                                J. Iurman
@@ -14,7 +14,7 @@ Expires: 3 January 2026                                            Cisco
                                                               Databricks
                                                                  T. Zhou
                                                                   Huawei
-                                                             2 July 2025
+                                                             3 July 2025
 
 
   In Situ Operations, Administration, and Maintenance (IOAM) Template
@@ -27,8 +27,8 @@ Abstract
    information into in-flight data packets.  This document specifies a
    new IOAM Option-Type that has a fixed length and can be updated by
    transit nodes along the path.  It enables lightweight monitoring
-   using constant-length data that does not depend on the number of hops
-   in the network.
+   using constant-length data that is not changed in-flight and is not
+   affected by the number of hops in the network.
 
 Status of This Memo
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2026.
+   This Internet-Draft will expire on 4 January 2026.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 1]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 1]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -102,14 +102,14 @@ Table of Contents
    This document introduces a new IOAM Option-Type that can be
    incorporated into data packets and updated by transit nodes along the
    path.  Compared to existing IOAM Trace Option-Types, the new Option-
-   Type provides coarse-grained performance information using data
-   fields that have a constant length.
+   Type provides performance information using data fields that have a
+   constant length.
 
 
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 2]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 2]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -118,9 +118,10 @@ Internet-Draft              Fixed IOAM Option                  July 2025
    telemetry header, including [I-D.cxx-ippm-ioamaggr],
    [I-D.mzbc-ippm-transit-measurement-option],
    [I-D.xiao-ippm-ioam-trace-extensions],
-   [I-D.filsfils-ippm-path-tracing] and [I-D.ravi-ippm-csig].  These
-   proposals can potentially benefit from the IOAM Option-Type that is
-   presented in this document.
+   [I-D.filsfils-ippm-path-tracing], [I-D.ravi-ippm-csig], and
+   [I-D.shi-ippm-congestion-measurement-data].  These proposals can
+   potentially benefit from the IOAM Option-Type that is presented in
+   this document.
 
 2.  Conventions
 
@@ -164,8 +165,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-
-Mizrahi, et al.          Expires 3 January 2026                 [Page 3]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 3]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -221,7 +221,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 4]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 4]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -277,7 +277,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 5]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 5]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -333,7 +333,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 6]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 6]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -389,7 +389,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 7]
+Mizrahi, et al.          Expires 4 January 2026                 [Page 7]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -436,19 +436,26 @@ Internet-Draft              Fixed IOAM Option                  July 2025
               <https://datatracker.ietf.org/doc/html/draft-ravi-ippm-
               csig-01>.
 
+   [I-D.shi-ippm-congestion-measurement-data]
+              Fioccola, G., Zhou, T., Zhao, G., and Z. Li, "Data Fields
+              for Congestion Measurement", Work in Progress, Internet-
+              Draft, draft-shi-ippm-congestion-measurement-data-04, 20
+              June 2025, <https://datatracker.ietf.org/doc/html/draft-
+              shi-ippm-congestion-measurement-data-04>.
+
+
+
+Mizrahi, et al.          Expires 4 January 2026                 [Page 8]
+
+Internet-Draft              Fixed IOAM Option                  July 2025
+
+
    [I-D.xiao-ippm-ioam-trace-extensions]
               Min, X., Liu, Y., and C. Lin, "Extensions to IOAM Trace
               Option for Carrying Fixed-Size Data", Work in Progress,
               Internet-Draft, draft-xiao-ippm-ioam-trace-extensions-01,
               18 April 2025, <https://datatracker.ietf.org/doc/html/
               draft-xiao-ippm-ioam-trace-extensions-01>.
-
-
-
-Mizrahi, et al.          Expires 3 January 2026                 [Page 8]
-
-Internet-Draft              Fixed IOAM Option                  July 2025
-
 
 Authors' Addresses
 
@@ -489,6 +496,16 @@ Authors' Addresses
    Email: shwetha.bhandari@databricks.com
 
 
+
+
+
+
+
+Mizrahi, et al.          Expires 4 January 2026                 [Page 9]
+
+Internet-Draft              Fixed IOAM Option                  July 2025
+
+
    Tianran Zhou
    Huawei
    156 Beiqing Rd.
@@ -501,4 +518,43 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.          Expires 3 January 2026                 [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires 4 January 2026                [Page 10]
