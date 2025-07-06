@@ -5,7 +5,7 @@
 IPPM                                                          T. Mizrahi
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                            F. Brockners
-Expires: 4 January 2026                                            Cisco
+Expires: 7 January 2026                                            Cisco
                                                                 A. Clemm
                                                                Sympotech
                                                                J. Iurman
@@ -14,7 +14,7 @@ Expires: 4 January 2026                                            Cisco
                                                               Databricks
                                                                  T. Zhou
                                                                   Huawei
-                                                             3 July 2025
+                                                             6 July 2025
 
 
   In Situ Operations, Administration, and Maintenance (IOAM) Template
@@ -27,8 +27,8 @@ Abstract
    information into in-flight data packets.  This document specifies a
    new IOAM Option-Type that has a fixed length and can be updated by
    transit nodes along the path.  It enables lightweight monitoring
-   using constant-length data that is not changed in-flight and is not
-   affected by the number of hops in the network.
+   while maintaining a constant length that is not changed in-flight and
+   is not affected by the number of hops in the network.
 
 Status of This Memo
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2026.
+   This Internet-Draft will expire on 7 January 2026.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 1]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 1]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 2]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 2]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -165,7 +165,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 3]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 3]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -221,7 +221,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 4]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 4]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -277,7 +277,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 5]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 5]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -333,7 +333,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 6]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 6]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -389,7 +389,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 7]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 7]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -445,7 +445,7 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 8]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 8]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -501,7 +501,7 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                 [Page 9]
+Mizrahi, et al.          Expires 7 January 2026                 [Page 9]
 
 Internet-Draft              Fixed IOAM Option                  July 2025
 
@@ -557,4 +557,4 @@ Internet-Draft              Fixed IOAM Option                  July 2025
 
 
 
-Mizrahi, et al.          Expires 4 January 2026                [Page 10]
+Mizrahi, et al.          Expires 7 January 2026                [Page 10]
