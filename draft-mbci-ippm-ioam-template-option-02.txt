@@ -5,7 +5,7 @@
 IPPM                                                          T. Mizrahi
 Internet-Draft                                                    Huawei
 Intended status: Standards Track                            F. Brockners
-Expires: 1 January 2027                                            Cisco
+Expires: 2 January 2027                                            Cisco
                                                                 A. Clemm
                                                                Sympotech
                                                                J. Iurman
@@ -16,7 +16,7 @@ Expires: 1 January 2027                                            Cisco
                                                                   Huawei
                                                                R. Bister
                                        Ostschweizer Fachhochschule - OST
-                                                            30 June 2026
+                                                             1 July 2026
 
 
   In Situ Operations, Administration, and Maintenance (IOAM) Template
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 January 2027.
+   This Internet-Draft will expire on 2 January 2027.
 
 
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 1]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 1]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
 Copyright Notice
@@ -86,8 +86,8 @@ Table of Contents
      6.2.  Transit Measurement Template  . . . . . . . . . . . . . .   7
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
    8.  Implementation Status . . . . . . . . . . . . . . . . . . . .   8
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      10.1.  Normative References . . . . . . . . . . . . . . . . . .   9
      10.2.  Informative References . . . . . . . . . . . . . . . . .   9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 2]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 2]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
    There are several in-progress proposals that use a fixed-size
@@ -165,9 +165,9 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 3]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 3]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
    *  Congestion information: information relating to the congestion
@@ -221,9 +221,9 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 4]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 4]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
        0                   1                   2                   3
@@ -249,7 +249,7 @@ Internet-Draft              Fixed IOAM Option                  June 2026
       follows.  A new registry is defined for this field, as specified
       in Section 7.  The value 0 has been assigned, indicating "No
       Option Data".  Assignments of values 1 to 127 are controlled by
-      IANA.  Values 128 to 255 are can be defined by an operator for a
+      IANA.  Values 128 to 255 can be defined by an operator for a
       specific deployment.
 
    Length:  An 8-bit length that specifies the size of the Template-Data
@@ -277,9 +277,9 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 5]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 5]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
 6.1.  IOAM Data Aggregation Along The Path
@@ -333,9 +333,9 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 6]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 6]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
       Flags to zero upon transmission.  When an intermediate node
@@ -389,9 +389,9 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                 [Page 7]
+Mizrahi, et al.          Expires 2 January 2027                 [Page 7]
 
-Internet-Draft              Fixed IOAM Option                  June 2026
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
        0                   1                   2                   3
@@ -425,35 +425,11 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 8.  Implementation Status
 
-   This section records the status of known implementations of the
-   protocol defined by this specification at the time of posting of this
-   Internet-Draft, and is based on a proposal described in [RFC7942].
-   The description of implementations in this section is intended to
-   assist the IETF in its decision processes in progressing drafts to
-   RFCs.  Please note that the listing of any individual implementation
-   here does not imply endorsement by the IETF.  Furthermore, no effort
-   has been spent to verify the information presented here that was
-   supplied by IETF contributors.  This is not intended as, and must not
-   be construed to be, a catalog of available implementations or their
-   features.  Readers are advised to note that other implementations may
-   exist.  According to [RFC7942], "this will allow reviewers and
-   working groups to assign due consideration to documents that have the
-   benefit of running code, which may serve as evidence of valuable
-   experimentation and feedback that have made the implemented protocols
-   more mature.  It is up to the individual working groups to use this
-   information as they see fit".
-
-
-
-Mizrahi, et al.          Expires 1 January 2027                 [Page 8]
-
-Internet-Draft              Fixed IOAM Option                  June 2026
-
-
    A Proof-of-Concept of the template option along with the aggregation
-   trace template has been implemented at OST and will be featured in a
-   hackathon project at IETF 126 July 2026 in Vienna.  More details will
-   be provided in a future version of the document.
+   trace template has been implemented at OST.  It is planned to have
+   the Proof-of-Concept feature in a hackathon project at IETF 126 July
+   2026 in Vienna.  More details will be provided in a future version of
+   the document.
 
 9.  Security Considerations
 
@@ -466,17 +442,20 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 10.  References
 
+
+
+
+Mizrahi, et al.          Expires 2 January 2027                 [Page 8]
+
+Internet-Draft              Fixed IOAM Option                  July 2026
+
+
 10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
-
-   [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
-              Code: The Implementation Status Section", BCP 205,
-              RFC 7942, DOI 10.17487/RFC7942, July 2016,
-              <https://www.rfc-editor.org/info/rfc7942>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -496,15 +475,6 @@ Internet-Draft              Fixed IOAM Option                  June 2026
               Internet-Draft, draft-cxx-ippm-ioamaggr-05, 2 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-cxx-ippm-
               ioamaggr-05>.
-
-
-
-
-
-Mizrahi, et al.          Expires 1 January 2027                 [Page 9]
-
-Internet-Draft              Fixed IOAM Option                  June 2026
-
 
    [I-D.filsfils-ippm-path-tracing]
               Filsfils, C., Abdelsalam, A., Camarillo, P., Yufit, M.,
@@ -527,6 +497,14 @@ Internet-Draft              Fixed IOAM Option                  June 2026
               Draft, draft-ravi-ippm-csig-01, 2 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ravi-ippm-
               csig-01>.
+
+
+
+
+Mizrahi, et al.          Expires 2 January 2027                 [Page 9]
+
+Internet-Draft              Fixed IOAM Option                  July 2026
+
 
    [I-D.shi-ippm-congestion-measurement-data]
               Fioccola, G., Zhou, T., Zhao, G., and Z. Li, "Data Fields
@@ -552,16 +530,6 @@ Authors' Addresses
    Email: tal.mizrahi.phd@gmail.com
 
 
-
-
-
-
-
-Mizrahi, et al.          Expires 1 January 2027                [Page 10]
-
-Internet-Draft              Fixed IOAM Option                  June 2026
-
-
    Frank Brockners
    Cisco Systems, Inc.
    Hansaallee 249, 3rd Floor
@@ -583,6 +551,15 @@ Internet-Draft              Fixed IOAM Option                  June 2026
    4000 Sart-Tilman
    Belgium
    Email: justin.iurman@uliege.be
+
+
+
+
+
+
+Mizrahi, et al.          Expires 2 January 2027                [Page 10]
+
+Internet-Draft              Fixed IOAM Option                  July 2026
 
 
    Shwetha Bhandari
@@ -613,4 +590,27 @@ Internet-Draft              Fixed IOAM Option                  June 2026
 
 
 
-Mizrahi, et al.          Expires 1 January 2027                [Page 11]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires 2 January 2027                [Page 11]
