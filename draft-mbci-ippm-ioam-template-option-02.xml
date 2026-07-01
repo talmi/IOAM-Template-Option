@@ -295,7 +295,7 @@
 		 <xref target="IANA"/>. The value 0 has been assigned, 
 		 indicating "No Option Data". 
 		 Assignments of values 1 to 127 are controlled by IANA.
-		 Values 128 to 255 are can be defined by an operator for a 
+		 Values 128 to 255 can be defined by an operator for a 
 		 specific deployment.</t>
 
 	 <t hangText="Length:">An 8-bit length that specifies the size of 
